@@ -1,0 +1,45 @@
+{
+  "hospital": [
+    {
+      "id": "1",
+      "name": "Jupiter Hospital",
+      "number": "1234567890",
+      "no of staff": "10",
+      "total bed": "25",
+      "available bed": "8",
+      "oxygen cylinder": "17",
+      "ventilator": "8"
+    }
+  ],
+  "doctor": [
+    {
+      "id": "1",
+      "name": "Dr.xyz",
+      "age": "27",
+      "Gender": "male",
+      "contact number": "0987654321",
+      "degree": "MBBS",
+      "specialization": "neurosurgeon"
+    }
+  ],
+  "ambulance": [
+    {
+      "name": "abc",
+      "mobile no": "1023456789",
+      "hospital name": "civil",
+      "address": "mumbai",
+      "booking date": "02-Jan-2022",
+      "ambulance type": "basic ambulance"
+    }
+  ],
+  "labtest": [
+    {
+      "name": "abc",
+      "mobile no": "1203456789",
+      "hospital name": "sapphire",
+      "address": "mumbai",
+      "booking date": "05-Jan-2022",
+      "lab test type": "diabetes"
+    }
+  ]
+}
