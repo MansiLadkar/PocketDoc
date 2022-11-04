@@ -1,0 +1,110 @@
+import React from "react";
+import { Button, Table } from "@mui/material";
+import "bootstrap/dist/css/bootstrap.min.css";
+import LabtestData from "../../components/LabtestData";
+import { Fragment } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../../components/Navbar";
+
+function FindLabtest() {
+  let history = useNavigate();
+
+  const handleEdit = (
+    id,
+    name,
+    contact,
+    hospital_name,
+    address,
+    booking_date,
+    type
+  ) => {
+    localStorage.setItem("Id", id);
+    localStorage.getItem("Name", name);
+    localStorage.getItem("Contact", contact);
+    localStorage.getItem("Hospital_name", hospital_name);
+    localStorage.getItem("Address", address);
+    localStorage.getItem("Booking_date", booking_date);
+    localStorage.getItem("Type", type);
+  };
+
+  const handleDelete = (id) => {
+    var index = LabtestData.map(function (e) {
+      return e.id;
+    }).indexOf(id);
+
+    LabtestData.splice(index, 1);
+
+    history("/FindLabtest");
+  };
+  return (
+    <Fragment>
+      <div className="App">
+        <div className="navb">
+          <Navbar />
+        </div>
+        <div className="content">
+          <div style={{ margin: "8rem" }}>
+            <Table striped bordered hover size="sm">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Contact</th>
+                  <th>Hospital_name</th>
+                  <th>Address</th>
+                  <th>Booking_date</th>
+                  <th>Type</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {LabtestData && LabtestData.length > 0
+                  ? LabtestData.map((item) => {
+                      return (
+                        <tr>
+                          <td>{item.Name}</td>
+                          <td>{item.Contact}</td>
+                          <td>{item.Hospital_name}</td>
+                          <td>{item.Address}</td>
+                          <td>{item.Booking_date}</td>
+                          <td>{item.Type}</td>
+                          <td>
+                            <Link to={"/EditLabtest"}>
+                              <Button
+                                onClick={() =>
+                                  handleEdit(
+                                    item.id,
+                                    item.Name,
+                                    item.Contact,
+                                    item.Hospital_name,
+                                    item.Address,
+                                    item.Booking_date,
+                                    item.Type
+                                  )
+                                }
+                              >
+                                Edit
+                              </Button>
+                            </Link>
+                            &nbsp;
+                            <Button onClick={() => handleDelete(item.id)}>
+                              Delete
+                            </Button>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  : "No data available"}
+              </tbody>
+            </Table>
+            <br></br>
+            <Link className="d-grid" to="/AddLabtest">
+              <Button size="lg">Create</Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </Fragment>
+  );
+}
+
+export default FindLabtest;
